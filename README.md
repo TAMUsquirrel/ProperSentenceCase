@@ -5,13 +5,13 @@ Hello! You're probably wondering, 'What all does it capitalize?' Great question!
 
 In addition to a wealth of simple (English-only) capitalization rules, this program utilizes CoreNLP, more specifically, Stanza, for Natural Language Processing to further this program's ability to recognize parts of speech and named entities for capitalization.
 
+Here is a list of current features:
 
 	1. The first letter of each sentence (duh).
   
-
  	2. NAMES OF PEOPLE, ORGANIZATIONS, & GEOPOLITICAL AREAS (GPE)
 		a. When the name just-so-happens to trigger other capitalization rules
-    b. When the name is recognized as a pronoun/NER by CoreNLP.
+    		b. When the name is recognized as a pronoun/NER by CoreNLP.
           The less ambiguous & more common the name of the person, org, or place is, the more likely it'll be recognized.
           For Example:
                 "I would love to work at a company like Google or apple."
@@ -32,14 +32,14 @@ In addition to a wealth of simple (English-only) capitalization rules, this prog
 		  b. if it's referring to the "[___] of something"
 			    examples: Prince of Wales, King of France
           
-      Note: I'd love to continue adding to this list, but I need to focus on other parts of the project right now.
+      Note: I'd love to continue adding to the list of titles, but that has been placed on the to-do list for now.
       If there is a title you'd like to see added, please let me know! :)
  
-	5. [Title] of Something
+	6. [Title] of Something
 		  example: "Yugi Moto is the King of Games."
             Note: Uses the same list of titles as the previous entry.
       
-  6. [_____] University/College /// "University of [____]
+  	7. [_____] University/College /// "University of [____]
 		  examples: "Texas A&M University" oe "University of Texas"
     
 	8. The word Honorable/Honourable if it precedes the word 'Judge' or 'Judges'
