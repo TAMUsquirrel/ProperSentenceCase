@@ -1,5 +1,7 @@
 # ProperSentenceCase
-Changes the input text to "Proper Sentence Case," which capitalize entities within the input text in addition to the first character of each sentence.
+Changes the input text to "Proper Sentence Case," which capitalizes recognized named entities within the input text, in addition to a host of other common English capitalization rules.
+
+=============================================================================================================
 
 Hello! You're probably wondering, 'What all does it capitalize?' Great question!
 
