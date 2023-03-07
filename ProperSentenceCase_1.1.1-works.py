@@ -9,9 +9,6 @@ st.subheader('This application changes the input text to "Proper Sentence Case,"
 with st.container():
     input_sentence = st.text_area("Please input text here. (maximum 800 words)")
     submit = st.button('Generate')
-if submit:
-    with st.spinner(text="This may take a moment..."):
-   
 # # ====================================================================================================================
                                           # CLEANUP SPACES/TABS/NEWLINES
 # # ====================================================================================================================
@@ -245,4 +242,6 @@ with open('HoustonRoadList.txt') as roads:
 # # ====================================================================================================================
 # NLP_Dict_2 = NLP_Doc_2.to_dict()     # CONVERT OUTPUT DATA STRUCTURE TO [LIST[LIST{DICT}]]
 final_output = roads_capped
-st.write(final_output)
+with st.container():
+    st.subheader("Output")
+    st.write(final_output)
