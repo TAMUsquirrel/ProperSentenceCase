@@ -252,14 +252,14 @@ with open('special_NERs') as names:
     else_capped = re.sub(f"{names}", basic_capitalizer, roads_capped, flags=re.IGNORECASE)
 
 unNatural_uncapped = re.sub("unNatural", basic_lowercaser, else_capped)
-UnNat_fixed = re.sub("UnNatural", basic_capitalizer, unNatural_uncapped)
+unNat_fixed = re.sub("UnNatural", basic_capitalizer, unNatural_uncapped)
 
 # # ====================================================================================================================
 # NLP_Doc_2 = nlp(else_capped)            # 2ND PASS USING STANZA FOR ANNOTATION
 # # ====================================================================================================================
 # NLP_Dict_2 = NLP_Doc_2.to_dict()     # CONVERT OUTPUT DATA STRUCTURE TO [LIST[LIST{DICT}]]
 # print(NLP_Doc_2)
-final_output = unNatural_uncapped
+final_output = unNat_fixed
 with st.container():
     st.subheader("Output")
     st.write(final_output)
