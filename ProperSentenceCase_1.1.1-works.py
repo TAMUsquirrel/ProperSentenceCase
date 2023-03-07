@@ -5,11 +5,13 @@ nlp = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos,ner', verbose=Fals
 #     # https://stanfordnlp.github.io/stanza/
 
 st.title('Proper Sentence Case Converter')
-st.header('Proper Sentence Case Converter')
 st.subheader('This application changes the input text to "Proper Sentence Case," which capitalizes recognized named entities within the input text, in addition to a host of other common English capitalization rules.')
-
 with st.container():
-    input_sentence = st.text_area("Please input text here.")
+    input_sentence = st.text_area("Please input text here. (maximum 800 words)")
+    submit = st.button('Generate')
+if submit:
+    with st.spinner(text="This may take a moment..."):
+   
 # # ====================================================================================================================
                                           # CLEANUP SPACES/TABS/NEWLINES
 # # ====================================================================================================================
@@ -239,10 +241,8 @@ with open('HoustonRoadList.txt') as roads:
     roads_capped = re.sub(f"{roads}", basic_capitalizer, pokemon_capped, flags=re.IGNORECASE)
 
 # # ====================================================================================================================
-NLP_Doc_2 = nlp(titles_capped)            # 2ND PASS USING STANZA FOR ANNOTATION
+# NLP_Doc_2 = nlp(titles_capped)            # 2ND PASS USING STANZA FOR ANNOTATION
 # # ====================================================================================================================
-NLP_Dict_2 = NLP_Doc_2.to_dict()     # CONVERT OUTPUT DATA STRUCTURE TO [LIST[LIST{DICT}]]
-
-
+# NLP_Dict_2 = NLP_Doc_2.to_dict()     # CONVERT OUTPUT DATA STRUCTURE TO [LIST[LIST{DICT}]]
 final_output = roads_capped
-print(final_output)
+st.write(final_output)
