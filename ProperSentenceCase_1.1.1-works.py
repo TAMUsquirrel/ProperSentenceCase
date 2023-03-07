@@ -14,13 +14,13 @@ with st.sidebar:
     st.caption('This app uses Natural Language Processing provided by Stanza (CoreNLP) to capitalize named entities, in addition to a host of other common English capitalization rules.')
     st.caption('If you are interested in learning more about what items this app will attempt to capitalize, and limitations of the app, please visit the <a href="https://github.com/TAMUsquirrel/ProperSentenceCase">GitHub Repo</a>.')
     st.subheader("Contact")
-    st.caption('This is a work-in-progress. Please submit issues <a href="https://github.com/TAMUsquirrel/ProperSentenceCase/issues">here<a/> or <a href="mailto:the@andrewharris.dev">send me an email</a>.')
+    st.caption('This is a work-in-progress. Please submit issues to this project\'s GitHub Repository.)
     
 st.title('Proper Sentence Case Converter')
 st.subheader('Check sidebar for more information.')
 with st.container():
     input_sentence = st.text_area("Please input text here. (maximum 800 words)")
-    submit = st.button('Generate')
+    submit = st.button('Convert Text')
 
 # # ====================================================================================================================
                                           # CLEANUP SPACES/TABS/NEWLINES
