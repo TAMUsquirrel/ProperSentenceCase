@@ -12,7 +12,7 @@ def pwise(iterable):
 with st.sidebar:
     st.subheader("About")
     st.caption('This app uses Natural Language Processing provided by Stanza (CoreNLP) to capitalize named entities, in addition to a host of other common English capitalization rules.')
-    st.markdown('If you are interested in learning more about what items this app will attempt to capitalize, and limitations of the app, please visit the project\'s <a href="https://github.com/TAMUsquirrel/ProperSentenceCase">GitHub Repository</a>.', unsafe_allow_html=True)
+    st.markdown('If you are interested in learning more about what things this app will attempt to capitalize, and limitations of the app, please visit the project\'s <a href="https://github.com/TAMUsquirrel/ProperSentenceCase">GitHub Repository</a>.', unsafe_allow_html=True)
     st.subheader("Contact")
     st.markdown('This is a work-in-progress. If you discover any issues, please submit them <a href="https://github.com/TAMUsquirrel/ProperSentenceCase/issues">here</a>. For anything else, you\'re welcome to reach out to me <a href="mailto:the@andrewharris.dev">via email</a>.', unsafe_allow_html=True)
     
