@@ -4,26 +4,30 @@ from itertools import tee
 nlp = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos,ner', verbose=False)
 #     # https://stanfordnlp.github.io/stanza/
 
+def pwise(iterable):
+    a, b = tee(iterable)
+    next(b, None)
+    return zip(a, b)
+
 st.title('Proper Sentence Case Converter')
 st.subheader('This application changes the input text to "Proper Sentence Case," which capitalizes recognized named entities within the input text, in addition to a host of other common English capitalization rules.')
 with st.container():
     input_sentence = st.text_area("Please input text here. (maximum 800 words)")
     submit = st.button('Generate')
+
+# # ====================================================================================================================
+                                          # CLEANUP SPACES/TABS/NEWLINES
+# # ====================================================================================================================
 # # ====================================================================================================================
                                           # CLEANUP SPACES/TABS/NEWLINES
 # # ====================================================================================================================
 sentence_case = str(input_sentence.capitalize())
-stripped = sentence_case.lstrip()
+stripped = sentence_case.strip()
 double_spaces_removed = " ".join(stripped.split())
 # # ====================================================================================================================
-NLP_Doc_1 = nlp(sentence_case)            # 1ST PASS USING STANZA FOR ANNOTATION
+NLP_Doc_1 = nlp(double_spaces_removed)            # 1ST PASS USING STANZA FOR ANNOTATION
 # # ====================================================================================================================
 NLP_Dict_1 = NLP_Doc_1.to_dict()     # CONVERT OUTPUT DATA STRUCTURE TO [LIST[LIST{DICT}]]
-
-def pairwise(iterable):
-    a, b = tee(iterable)
-    next(b, None)
-    return zip(a, b)
 
 def sentence_1st_char_capitalizer(NLP_Dict, input_text):
     output_document = ''
@@ -73,7 +77,7 @@ def sentence_2nd_char_capitalizer(input_text):
         else:
             output_document += sec_char_letter+rest_of_sent+' '
     return output_document
-Sents_Capped = sentence_1st_char_capitalizer(NLP_Dict_1, sentence_2nd_char_capitalizer(stripped))
+Sents_Capped = sentence_1st_char_capitalizer(NLP_Dict_1, sentence_2nd_char_capitalizer(double_spaces_removed))
 List_of_Single_Word_Titles = ['agent', 'brother', 'cantor', 'captain', 'chairperson', 'chancellor', 'chef', 'chief', 'commissioner', 'dame', 'dean', 'deputy', 'detective', 'director', 'doctor', 'father', 'governor', 'judge', 'king', 'queen', 'prince', 'princess', 'czar', 'lady', 'laird', 'lieutenant', 'lord', 'madame', 'master', 'miss', 'officer', 'pastor', 'president', 'principal', 'professor', 'provost', 'rabbi', 'rector', 'regent', 'reverend', 'sensei', 'sheriff', 'sister', 'student', 'trainer', 'warden']
 
 def Capitalize_Word1(NLP_Dict, input_text):
@@ -85,7 +89,7 @@ def Capitalize_Word1(NLP_Dict, input_text):
         # sentence_start, sentence_end = sentence[0]['start_char'], sentence[-1]['end_char']
         # trigger_word_seen = False
         last_word_input_text = input_text[int(sentence[-1]['start_char']):int(sentence[-1]['end_char'])]
-        for word, next_word in pairwise(sentence):
+        for word, next_word in pwise(sentence):
             word_start, word_end = int(word['start_char']), int(word['end_char'])
             next_word_start, next_word_end  = int(next_word['start_char']), int(next_word['end_char'])
             word_input_text, next_word_input_text = input_text[word_start:word_end], input_text[next_word_start:next_word_end]
@@ -109,13 +113,13 @@ def Capitalize_Word1(NLP_Dict, input_text):
                 output_document += last_word_input_text+' '
     return output_document
 def Capitalize_Word2(NLP_Dict, input_text):
-    # back capper for pairwise couples.
+    # back capper for pwise couples.
     # uni/college back cappers
     output_document = ''
     for sentence in NLP_Dict:
         first_word_input_text = input_text[int(sentence[0]['start_char']):int(sentence[0]['end_char'])]    
         output_document += first_word_input_text
-        for word, next_word in pairwise(sentence):
+        for word, next_word in pwise(sentence):
             word_start, word_end = int(word['start_char']), int(word['end_char'])
             next_word_start, next_word_end = int(next_word['start_char']), int(next_word['end_char'])
             word_input_text, next_word_input_text = input_text[word_start:word_end], input_text[next_word_start:next_word_end]
@@ -128,6 +132,7 @@ def Capitalize_Word2(NLP_Dict, input_text):
         else:
             output_document +=' '
     return output_document
+
 Basics_Capped = Capitalize_Word2(NLP_Dict_1, Capitalize_Word1(NLP_Dict_1, Sents_Capped))
 
 def triwise(iterable):
