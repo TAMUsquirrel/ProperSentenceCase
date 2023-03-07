@@ -1,4 +1,5 @@
-import stanza, re, streamlit
+import stanza, re
+import streamlit as st
 from itertools import pairwise, tee, zip_longest
 nlp = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos,ner', verbose=False)
 #     # https://stanfordnlp.github.io/stanza/
