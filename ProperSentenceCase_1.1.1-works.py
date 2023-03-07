@@ -246,7 +246,7 @@ with open('HoustonRoadList.txt') as roads:
     road_names = roads.read()
     roads_capped = re.sub(f"{roads}", basic_capitalizer, pokemon_capped, flags=re.IGNORECASE)
     
-with open('Special_NERs') as names:
+with open('special_NERs') as names:
     road_names = names.read()
     else_capped = re.sub(f"{names}", basic_capitalizer, roads_capped, flags=re.IGNORECASE)
 
