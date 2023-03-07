@@ -2,7 +2,12 @@ import stanza, re, streamlit
 from itertools import pairwise, tee, zip_longest
 nlp = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos,ner', verbose=False)
 #     # https://stanfordnlp.github.io/stanza/
-input_sentence = streamlit.text_input("Input Text Here"
+st.title('Proper Sentence Case Converter')
+st.header('Proper Sentence Case Converter')
+st.subheader('This application changes the input text to "Proper Sentence Case," which capitalizes recognized named entities within the input text, in addition to a host of other common English capitalization rules.')
+
+with st.container():
+    input_sentence = st.text_area("Please input text here.")
 # # ====================================================================================================================
                                           # CLEANUP SPACES/TABS/NEWLINES
 # # ====================================================================================================================
