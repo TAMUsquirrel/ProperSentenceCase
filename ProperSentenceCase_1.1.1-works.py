@@ -9,7 +9,7 @@ def pwise(iterable):
     next(b, None)
     return zip(a, b)
 
-with st.sidebar:
+with st.sidebar():
     about_head = st.subheader("About")
     about_info = st.text("This app uses Natural Language Processing provided by Stanza (CoreNLP) to capitalize named entities, in addition to a host of other common English capitalization rules.")
         
