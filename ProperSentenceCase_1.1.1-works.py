@@ -9,8 +9,12 @@ def pwise(iterable):
     next(b, None)
     return zip(a, b)
 
+with st.sidebar:
+    about_head = st.subheader("About")
+    about_info = st.text("This app uses Natural Language Processing provided by Stanza (CoreNLP) to capitalize named entities, in addition to a host of other common English capitalization rules.")
+        
 st.title('Proper Sentence Case Converter')
-st.subheader('This application changes the input text to "Proper Sentence Case," which capitalizes recognized named entities within the input text, in addition to a host of other common English capitalization rules.')
+st.subheader('Check sidebar for more information.')
 with st.container():
     input_sentence = st.text_area("Please input text here. (maximum 800 words)")
     submit = st.button('Generate')
@@ -247,3 +251,4 @@ final_output = roads_capped
 with st.container():
     st.subheader("Output")
     st.write(final_output)
+
