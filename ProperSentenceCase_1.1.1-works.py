@@ -1,11 +1,8 @@
-import stanza, re
+import stanza, re, streamlit
 from itertools import pairwise, tee, zip_longest
 nlp = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos,ner', verbose=False)
 #     # https://stanfordnlp.github.io/stanza/
-input_sentence = input('''
-Please enter the text that will be converted: 
-
-''')
+input_sentence = streamlit.text_input("Input Text Here"
 # # ====================================================================================================================
                                           # CLEANUP SPACES/TABS/NEWLINES
 # # ====================================================================================================================
