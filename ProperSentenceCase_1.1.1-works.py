@@ -1,8 +1,9 @@
 import stanza, re
 import streamlit as st
-from itertools import pairwise, tee, zip_longest
+from itertools import tee
 nlp = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos,ner', verbose=False)
 #     # https://stanfordnlp.github.io/stanza/
+
 st.title('Proper Sentence Case Converter')
 st.header('Proper Sentence Case Converter')
 st.subheader('This application changes the input text to "Proper Sentence Case," which capitalizes recognized named entities within the input text, in addition to a host of other common English capitalization rules.')
@@ -19,6 +20,11 @@ double_spaces_removed = " ".join(stripped.split())
 NLP_Doc_1 = nlp(sentence_case)            # 1ST PASS USING STANZA FOR ANNOTATION
 # # ====================================================================================================================
 NLP_Dict_1 = NLP_Doc_1.to_dict()     # CONVERT OUTPUT DATA STRUCTURE TO [LIST[LIST{DICT}]]
+
+def pairwise(iterable):
+    a, b = tee(iterable)
+    next(b, None)
+    return zip(a, b)
 
 def sentence_1st_char_capitalizer(NLP_Dict, input_text):
     output_document = ''
