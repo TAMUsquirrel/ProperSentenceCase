@@ -82,7 +82,7 @@ def sentence_2nd_char_capitalizer(input_text):
             output_document += sec_char_letter+rest_of_sent+' '
     return output_document
 Sents_Capped = sentence_1st_char_capitalizer(NLP_Dict_1, sentence_2nd_char_capitalizer(double_spaces_removed))
-List_of_Single_Word_Titles = ['agent', 'brother', 'cantor', 'captain', 'chairperson', 'chancellor', 'chef', 'chief', 'commissioner', 'dame', 'dean', 'deputy', 'detective', 'director', 'doctor', 'father', 'governor', 'judge', 'king', 'queen', 'prince', 'princess', 'czar', 'lady', 'laird', 'lieutenant', 'lord', 'madame', 'master', 'miss', 'officer', 'pastor', 'president', 'principal', 'professor', 'provost', 'rabbi', 'rector', 'regent', 'reverend', 'sensei', 'sheriff', 'sister', 'student', 'trainer', 'warden']
+List_of_Single_Word_Titles = ['agent', 'brother', 'cantor', 'captain', 'chairperson', 'chancellor', 'chef', 'chief', 'commissioner', 'darth', 'dame', 'dean', 'deputy', 'detective', 'director', 'doctor', 'father', 'governor', 'judge', 'king', 'queen', 'prince', 'princess', 'czar', 'lady', 'laird', 'lieutenant', 'lord', 'madame', 'master', 'miss', 'officer', 'pastor', 'president', 'principal', 'professor', 'provost', 'rabbi', 'rector', 'regent', 'reverend', 'saint', 'sensei', 'sheriff', 'sister', 'student', 'trainer', 'warden']
 
 def Capitalize_Word1(NLP_Dict, input_text):
     # Capitalizing Names of People, organizations, and geopolitical entities
@@ -245,12 +245,16 @@ with open('pokemon_names_file') as p:
 with open('HoustonRoadList.txt') as roads:
     road_names = roads.read()
     roads_capped = re.sub(f"{roads}", basic_capitalizer, pokemon_capped, flags=re.IGNORECASE)
+    
+with open('Special_NERs') as names:
+    road_names = names.read()
+    else_capped = re.sub(f"{names}", basic_capitalizer, roads_capped, flags=re.IGNORECASE)
 
 # # ====================================================================================================================
 # NLP_Doc_2 = nlp(titles_capped)            # 2ND PASS USING STANZA FOR ANNOTATION
 # # ====================================================================================================================
 # NLP_Dict_2 = NLP_Doc_2.to_dict()     # CONVERT OUTPUT DATA STRUCTURE TO [LIST[LIST{DICT}]]
-final_output = roads_capped
+final_output = else_capped
 with st.container():
     st.subheader("Output")
     st.write(final_output)
