@@ -226,7 +226,8 @@ def celtic_basic_capitalizer(a):
     return a.group(1) + a.group(2).title() + a.group(3).title()
 def basic_capitalizer(a):
     return a.group().title()
-
+def basic_lowercaser(a):
+    return a.group().lower()
 
 try: # More Capitalization Stuff
     common_acronyms = "usa|omg|rsvp|asap|lmk|brb|dob|tba|tbd|eta|tgif|fomo|imo|n/a|aka|ner|diy|fyi|faq|atm|id|iq|gmo|nlp|pc|pr|hr|awol|ce|bce|ocd|md|byob|og|yolo|captcha|madd|ikea|geico|fifa|nasdaq|"
@@ -250,11 +251,15 @@ with open('special_NERs') as names:
     road_names = names.read()
     else_capped = re.sub(f"{names}", basic_capitalizer, roads_capped, flags=re.IGNORECASE)
 
+unNatural_uncapped = re.sub("unNatural", basic_lowercaser, else_capped)
+UnNat_fixed = re.sub("UnNatural", basic_capitalizer, unNatural_uncapped)
+
 # # ====================================================================================================================
-# NLP_Doc_2 = nlp(titles_capped)            # 2ND PASS USING STANZA FOR ANNOTATION
+# NLP_Doc_2 = nlp(else_capped)            # 2ND PASS USING STANZA FOR ANNOTATION
 # # ====================================================================================================================
 # NLP_Dict_2 = NLP_Doc_2.to_dict()     # CONVERT OUTPUT DATA STRUCTURE TO [LIST[LIST{DICT}]]
-final_output = else_capped
+# print(NLP_Doc_2)
+final_output = unNatural_uncapped
 with st.container():
     st.subheader("Output")
     st.write(final_output)
