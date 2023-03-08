@@ -1,7 +1,14 @@
 import stanza, re
 import streamlit as st
 from itertools import tee
-nlp = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos,ner', verbose=False)
+
+@st.cache_resource
+def load_NLP():
+    nlp = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos,ner', verbose=False)
+    return nlp
+#     # https://stanfordnlp.github.io/stanza/
+nlp = load_NLP()
+
 #     # https://stanfordnlp.github.io/stanza/
 
 def pwise(iterable):
