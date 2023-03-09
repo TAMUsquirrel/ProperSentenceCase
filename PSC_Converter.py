@@ -20,11 +20,10 @@ with st.sidebar:
     st.markdown('If you are interested in learning more about what things this app will attempt to capitalize, and limitations of the app, please visit the project\'s <a href="https://github.com/TAMUsquirrel/ProperSentenceCase">GitHub Repository</a>.', unsafe_allow_html=True)
     st.subheader("Contact")
     st.markdown('This is a work-in-progress. If you discover any issues, please submit them <a href="https://github.com/TAMUsquirrel/ProperSentenceCase/issues">here</a>. For anything else, you\'re welcome to reach out to me <a href="mailto:the@andrewharris.dev">via email</a>.', unsafe_allow_html=True)
-    
 st.title('Proper Sentence Case Converter')
-st.subheader('Check sidebar for more information.')
+st.subheader('Any questions? Please read the left sidebar for more information.')
 with st.container():
-    input_sentence = st.text_area("Please input text here. (maximum 800 words)")
+    input_sentence = st.text_area("Please input text here. (the longer the text, the longer it will take to process.)")
     submit = st.button('Convert Text')
 
 # # ====================================================================================================================
