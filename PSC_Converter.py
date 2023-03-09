@@ -9,8 +9,6 @@ def load_NLP():
 #     # https://stanfordnlp.github.io/stanza/
 nlp = load_NLP()
 
-#     # https://stanfordnlp.github.io/stanza/
-
 def pwise(iterable):
     a, b = tee(iterable)
     next(b, None)
@@ -97,8 +95,6 @@ def Capitalize_Word1(NLP_Dict, input_text):
     # Also caps titles preceding proper nouns
     output_document = ''
     for sentence in NLP_Dict:
-        # sentence_start, sentence_end = sentence[0]['start_char'], sentence[-1]['end_char']
-        # trigger_word_seen = False
         last_word_input_text = input_text[int(sentence[-1]['start_char']):int(sentence[-1]['end_char'])]
         for word, next_word in pwise(sentence):
             word_start, word_end = int(word['start_char']), int(word['end_char'])
@@ -261,12 +257,39 @@ with open('special_NERs') as names:
 unNatural_uncapped = re.sub("unNatural", basic_lowercaser, else_capped)
 unNat_fixed = re.sub("UnNatural", basic_capitalizer, unNatural_uncapped)
 
-# # ====================================================================================================================
-# NLP_Doc_2 = nlp(else_capped)            # 2ND PASS USING STANZA FOR ANNOTATION
-# # ====================================================================================================================
-# NLP_Dict_2 = NLP_Doc_2.to_dict()     # CONVERT OUTPUT DATA STRUCTURE TO [LIST[LIST{DICT}]]
-# print(NLP_Doc_2)
-final_output = unNat_fixed
+# ====================================================================================================================
+NLP_Doc_2 = nlp(unNat_fixed)            # 2ND PASS USING STANZA FOR ANNOTATION
+# ====================================================================================================================
+NLP_Dict_2 = NLP_Doc_2.to_dict()     # CONVERT OUTPUT DATA STRUCTURE TO [LIST[LIST{DICT}]]
+
+def Capitalize_Word_Recheck(NLP_Dict, input_text):
+    output_document = ''
+    for sentence in NLP_Dict:
+        last_word_input_text = input_text[int(sentence[-1]['start_char']):int(sentence[-1]['end_char'])]
+        for word, next_word in pwise(sentence):
+            word_start, word_end = int(word['start_char']), int(word['end_char'])
+            next_word_start, next_word_end  = int(next_word['start_char']), int(next_word['end_char'])
+            word_input_text, next_word_input_text = input_text[word_start:word_end], input_text[next_word_start:next_word_end]
+            space_in_between_words = next_word_start-word_end
+            if word['xpos'] in ['NNP', 'NNPS'] and word['text'][0] in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']:
+                capitalized_word = word_input_text.title()
+                output_document += capitalized_word+space_in_between_words*' '
+            else:
+                output_document += word_input_text+space_in_between_words*' '
+        else:
+            word = sentence[-1]
+            if word['xpos'] in ['NNP', 'NNPS']:
+                capitalized_last_word = last_word_input_text.title()
+                try:
+                    output_document += capitalized_last_word+space_in_between_words*' '
+                except UnboundLocalError:
+                    continue
+            else:
+                output_document += last_word_input_text+' '
+    return output_document
+
+final_output = Capitalize_Word_Recheck(NLP_Dict_2, unNat_fixed)
+
 with st.container():
     st.subheader("Output")
     st.write(final_output)
