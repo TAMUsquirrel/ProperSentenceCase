@@ -277,7 +277,7 @@ def Capitalize_Word_Recheck(NLP_Dict, input_text):
                 output_document += word_input_text+space_in_between_words*' '
         else:
             word = sentence[-1]
-            if word['xpos'] in ['NNP', 'NNPS']:
+            if word['xpos'] in ['NNP', 'NNPS'] and word['text'][0] in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']:
                 capitalized_last_word = last_word_input_text.title()
                 try:
                     output_document += capitalized_last_word+space_in_between_words*' '
