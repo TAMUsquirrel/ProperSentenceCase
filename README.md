@@ -35,18 +35,18 @@ Here is a list of current features:
 			    examples: Prince of Wales, King of France
           
       Note: I'd love to continue adding to the list of titles, but that has been placed on the to-do list for now.
-      If there is a title you'd like to see added, please let me know! :)
+      If there is a title you'd like to see added, please let me know!
  
 	6. [Title] of Something
 		  example: "Yugi Moto is the King of Games."
             Note: Uses the same list of titles as the previous entry.
       
   	7. [_____] University/College /// "University of [____]
-		  examples: "Texas A&M University" oe "University of Texas"
+		  examples: "Texas A&M University" or "University of Texas"
     
 	8. The word Honorable/Honourable if it precedes the word 'Judge' or 'Judges'
         Why? …I have a background in criminal justice, and wanted to see this.
-        If there are other scenarios where a capitalized adjective can precede a specific title, please let me know and I can add it to the list!!
+        If there are other scenarios where a capitalized adjective can precede a specific title, please let me know and I can add it to the list!
 	
 	9. Pokemon names (as of 3/7/2023).
 	
