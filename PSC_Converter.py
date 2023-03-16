@@ -164,7 +164,11 @@ def title_quadwise_back_capper(NLP_Dict, input_text):
     output_document = ''
     for sentence in NLP_Dict:
         try:
-            output_document += input_text[int(sentence[0]['start_char']):int(sentence[0]['end_char'])]+((int(sentence[1]['start_char'])-int(sentence[0]['end_char']))*' ')
+            output_document += input_text[int(sentence[0]['start_char']):int(sentence[0]['end_char'])]
+        except IndexError:
+            continue
+        try:
+            output_document += (int(sentence[1]['start_char'])-int(sentence[0]['end_char']))*' '
         except IndexError:
             continue
         try:
