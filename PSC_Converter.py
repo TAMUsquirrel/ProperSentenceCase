@@ -207,7 +207,11 @@ def title_triwise_front_capper(NLP_Dict, input_text):
                 output_document += word1_location+(space_between_word1_word2)
         else:
             try:
-                output_document += input_text[int(sentence[-2]['start_char']):int(sentence[-2]['end_char'])]+((int(sentence[-1]['start_char'])-int(sentence[-2]['end_char']))*' ')
+                output_document += input_text[int(sentence[-2]['start_char']):int(sentence[-2]['end_char'])]
+            except IndexError:
+                continue
+            try:
+                output_document += ((int(sentence[-1]['start_char'])-int(sentence[-2]['end_char']))*' ')
             except IndexError:
                 continue
             try:
