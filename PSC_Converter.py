@@ -37,7 +37,12 @@ NLP_Dict_1 = NLP_Doc_1.to_dict()     # CONVERT OUTPUT DATA STRUCTURE TO [LIST[LI
 if input_sentence == '':
     final_output = ''
 elif len(NLP_Dict_1[0]) == 1:
-    final_output = input_sentence.capitalize()
+    single_word_check = input_sentence.capitalize()
+    capitalize_celtic = re.sub("( )(Mc|Mac|O\' )(...)", celtic_basic_capitalizer, single_word_check, flags=re.IGNORECASE)
+    with open('common_acronyms') as cas:
+        com_acs = cas.read()
+        Draft1_acronyms_capped = re.sub(f"( )({com_acs})( |\/|\.|\?)", common_acronym_capitalizer, capitalize_celtic, flags=re.IGNORECASE)
+    final_output = Draft1_acronyms_capped
 else:
     Sents_Capped = sentence_1st_char_capitalizer(NLP_Dict_1, sentence_2nd_char_capitalizer(NLP_Dict_1, double_spaces_removed))
 
