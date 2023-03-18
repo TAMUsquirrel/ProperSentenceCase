@@ -65,7 +65,7 @@ else:
     
     with open('superhero_names') as p:
         superheroes = p.read()
-        superheroes_capped = re.sub(f"{superhero}", basic_capitalizer, pokemon_capped, flags=re.IGNORECASE)
+        superheroes_capped = re.sub(f"{superheroes}", basic_capitalizer, pokemon_capped, flags=re.IGNORECASE)
 
     with open('HoustonRoadList.txt') as roads:
         road_names = roads.read()
