@@ -48,7 +48,6 @@ else:
     with open('common_acronyms') as cas:
         com_acs = cas.read()
         Draft1_acronyms_capped = re.sub(f"( )({com_acs})( |\/|\.|\?)", common_acronym_capitalizer, titles_capped, flags=re.IGNORECASE)
-    Draft1_acronyms_capped = re.sub(f"( )({common_acronyms})( |\/|\.|\?)", common_acronym_capitalizer, titles_capped, flags=re.IGNORECASE)
     Draft1_2_dot_acronyms_capped = re.sub("( )(.\..\.)", another_acronym_capitalizer, Draft1_acronyms_capped, flags=re.IGNORECASE)
     Draft1_3_dot_acronyms_capped = re.sub("( )(.\..\..\.)", another_acronym_capitalizer, Draft1_2_dot_acronyms_capped, flags=re.IGNORECASE)
     Draft1_lowercase_domains = re.sub("(\.)(com|net|org|co|us|ru|ir|in|uk|au|de|ua|gov)( |\/|\.|\?)", lowercaser2, Draft1_3_dot_acronyms_capped, flags=re.IGNORECASE)
