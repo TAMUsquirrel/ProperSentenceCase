@@ -62,10 +62,14 @@ else:
     with open('pokemon_names_file') as p:
         pokemon_names = p.read()
         pokemon_capped = re.sub(f"{pokemon_names}", basic_capitalizer, Draft1_lowercase_domains, flags=re.IGNORECASE)
+    
+    with open('superhero_names') as p:
+        superheroes = p.read()
+        superheroes_capped = re.sub(f"{superhero}", basic_capitalizer, pokemon_capped, flags=re.IGNORECASE)
 
     with open('HoustonRoadList.txt') as roads:
         road_names = roads.read()
-        roads_capped = re.sub(f"{road_names}", basic_capitalizer, pokemon_capped, flags=re.IGNORECASE)
+        roads_capped = re.sub(f"{road_names}", basic_capitalizer, superheroes_capped, flags=re.IGNORECASE)
         
     with open('special_NERs') as names:
         else_names = names.read()
