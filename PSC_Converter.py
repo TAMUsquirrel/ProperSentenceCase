@@ -45,17 +45,18 @@ else:
     Basics_Capped = Capitalize_Word2(NLP_Dict_1, Capitalize_Word1(NLP_Dict_1, Sents_Capped))
     titles_capped = title_triwise_front_capper(NLP_Dict_1, title_quadwise_back_capper(NLP_Dict_1, Basics_Capped))
 
+    capitalize_celtic = re.sub("( )(Mc|Mac|O\' )(...)", celtic_basic_capitalizer, titles_capped, flags=re.IGNORECASE)
     with open('common_acronyms') as cas:
         com_acs = cas.read()
-        Draft1_acronyms_capped = re.sub(f"( )({com_acs})( |\/|\.|\?)", common_acronym_capitalizer, titles_capped, flags=re.IGNORECASE)
+        Draft1_acronyms_capped = re.sub(f"( )({com_acs})( |\/|\.|\?)", common_acronym_capitalizer, capitalize_celtic, flags=re.IGNORECASE)
     Draft1_2_dot_acronyms_capped = re.sub("( )(.\..\.)", another_acronym_capitalizer, Draft1_acronyms_capped, flags=re.IGNORECASE)
     Draft1_3_dot_acronyms_capped = re.sub("( )(.\..\..\.)", another_acronym_capitalizer, Draft1_2_dot_acronyms_capped, flags=re.IGNORECASE)
     Draft1_lowercase_domains = re.sub("(\.)(com|net|org|co|us|ru|ir|in|uk|au|de|ua|gov)( |\/|\.|\?)", lowercaser2, Draft1_3_dot_acronyms_capped, flags=re.IGNORECASE)
-    capitalize_celtic = re.sub("( )(Mc|Mac|O\' )(...)", celtic_basic_capitalizer, Draft1_lowercase_domains, flags=re.IGNORECASE)
+
 
     with open('pokemon_names_file') as p:
         pokemon_names = p.read()
-        pokemon_capped = re.sub(f"{pokemon_names}", basic_capitalizer, capitalize_celtic, flags=re.IGNORECASE)
+        pokemon_capped = re.sub(f"{pokemon_names}", basic_capitalizer, Draft1_lowercase_domains, flags=re.IGNORECASE)
 
     with open('HoustonRoadList.txt') as roads:
         road_names = roads.read()
