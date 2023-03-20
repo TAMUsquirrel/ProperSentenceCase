@@ -50,7 +50,7 @@ else:
     Basics_Capped = Capitalize_Word2(NLP_Dict_1, Capitalize_Word1(NLP_Dict_1, Sents_Capped))
     titles_capped = title_triwise_front_capper(NLP_Dict_1, title_quadwise_back_capper(NLP_Dict_1, Basics_Capped))
 
-    capitalize_celtic = re.sub("( )(Mc|Mac|O\' )(...)", celtic_basic_capitalizer, titles_capped, flags=re.IGNORECASE)
+    capitalize_celtic = re.sub("( )(Mc|Mac|O\')([a-z][a-z][a-z])", celtic_basic_capitalizer, titles_capped, flags=re.IGNORECASE)
     with open('common_acronyms') as cas:
         com_acs = cas.read()
         Draft1_acronyms_capped = re.sub(f"( )({com_acs})( |\/|\.|\?)", common_acronym_capitalizer, capitalize_celtic, flags=re.IGNORECASE)
