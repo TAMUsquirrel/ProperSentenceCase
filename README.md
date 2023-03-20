@@ -48,9 +48,12 @@ Here is a list of current features:
         Why? …I have a background in criminal justice, and wanted to see this.
         If there are other scenarios where a capitalized adjective can precede a specific title, please let me know and I can add it to the list!
 	
-	9. Pokemon names (as of 3/7/2023).
+	9. Pokemon names (existing as of 3/7/2023).
 	
 	10. The names of approximately 12,000 roads in the Houston area, when the text uses the shorthand street abbreviation. This will be removed in the future when a better solution for capitalizing street names is developed.
+	
+	11. Common super-hero names, excluding names that might be mistaken for basic nouns. E.g. Hulk or Black Widow
+
 
 LIMITATIONS:
 
