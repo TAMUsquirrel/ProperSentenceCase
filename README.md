@@ -13,7 +13,7 @@ Here is a list of current features:
   
  	2. NAMES OF PEOPLE, ORGANIZATIONS, & GEOPOLITICAL AREAS (GPE)
 		a. When the name just-so-happens to trigger other capitalization rules
-    		b. When the name is recognized as a proper noun/NER by CoreNLP.
+    		b. When the name is recognized as a proper noun/NER by CoreNLP
 		c. If the name is on the list of 7000 common names collected using SSA data
 			(*manually removed names that could be mistaken for other parts of speech)
           The less ambiguous & more common the name of the person, org, or place is, the more likely it'll be recognized.
