@@ -231,3 +231,5 @@ def basic_capitalizer(a):
     return a.group().title()
 def basic_lowercaser(a):
     return a.group().lower()
+def mid_capitalizer(a):
+    return a.group(1) + a.group(2).title() + a.group(3)
